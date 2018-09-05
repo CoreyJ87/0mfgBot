@@ -59,7 +59,7 @@ client.login(botToken);
 client.on('ready', () => {
   client.user.setPresence({
     game: {
-      name: 'with RG user permissions'
+      name: 'with 0mfg user permissions'
     },
     status: 'online'
   })
