@@ -52,6 +52,22 @@ app.use(initDiscord);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+
+console.log('Initialized Discord Client');
+client.login(botToken);
+
+client.on('ready', () => {
+  client.user.setPresence({
+    game: {
+      name: 'with RG user permissions'
+    },
+    status: 'online'
+  })
+  console.log(`Logged in as ${client.user.tag}!`);
+  if (functions.isMasterProcess() && debug == false)
+    eventListeners.eventListenersInit(client);
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
