@@ -8,10 +8,10 @@ const Discord = require('discord.js');
 const guildId = process.env.GUILD_ID;
 const botToken = process.env.BOT_TOKEN;
 
+
 const functions = require('./lib/functions.js');
 const eventListeners = require('./lib/eventlisteners.js')
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 var app = express();
 var client = new Discord.Client();
@@ -19,19 +19,6 @@ var client = new Discord.Client();
 const initDiscord = function(req, res, next) {
   req.client = client;
   console.log('Initialized Discord Client');
-  client.login(botToken);
-
-  client.on('ready', () => {
-    client.user.setPresence({
-      game: {
-        name: 'with 0mfg permissions'
-      },
-      status: 'online'
-    })
-    console.log(`Logged in as ${client.user.tag}!`);
-    if (functions.isMasterProcess())
-      eventListeners.eventListenersInit(client);
-  });
   next();
 }
 
@@ -50,7 +37,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(initDiscord);
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 
 console.log('Initialized Discord Client');
