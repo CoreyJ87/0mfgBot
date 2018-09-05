@@ -64,7 +64,7 @@ client.on('ready', () => {
     status: 'online'
   })
   console.log(`Logged in as ${client.user.tag}!`);
-  if (functions.isMasterProcess() && debug == false)
+  if (functions.isMasterProcess())
     eventListeners.eventListenersInit(client);
 });
 
