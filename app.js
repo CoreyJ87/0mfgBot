@@ -24,12 +24,12 @@ const initDiscord = function(req, res, next) {
   client.on('ready', () => {
     client.user.setPresence({
       game: {
-        name: 'with RG user permissions'
+        name: 'with 0mfg permissions'
       },
       status: 'online'
     })
     console.log(`Logged in as ${client.user.tag}!`);
-    if (functions.isMasterProcess() && debug == false)
+    if (functions.isMasterProcess())
       eventListeners.eventListenersInit(client);
   });
   next();
